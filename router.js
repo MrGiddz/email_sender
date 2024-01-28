@@ -1,9 +1,9 @@
-import express from "express"; 
-import {main} from "./mailer.js";
-
+import express from "express";
+import { main } from "./mailer.js";
 
 const router = express.Router();
 
-router.post('/', main)
+
+router.post("/", main);
 
 export default router;

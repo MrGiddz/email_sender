@@ -10,17 +10,19 @@ import mailRouter from './router.js'
 /* CONFIGURATION */
 dotenv.config();
 const app = express();
-app.use(express.json());
+// app.use(express.json());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(cors());
-const PORT = 6789
+const PORT = 6789;
 
 /* ROUTES */
 app.use("/mailer", mailRouter);
 
 app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
+
+
 
