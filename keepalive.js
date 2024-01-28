@@ -1,10 +1,12 @@
-const cron = require('node-cron');
-const axios = require('axios');
+import  cron from 'node-cron';
+import axios from 'axios';
 
 const urlToVisit = 'https://email-sender-l5uy.onrender.com/';
 
 // Define the cron schedule (every 10 minutes)
-const cronSchedule = '*/10 * * * *';
+const cronSchedule = '*/1 * * * *';
+
+console.log("Cron Scheduled")
 
 // Set up the cron job
 cron.schedule(cronSchedule, async () => {
