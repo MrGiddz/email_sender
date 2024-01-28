@@ -20,7 +20,8 @@ app.use(cors());
 const PORT = 6789;
 
 /* ROUTES */
-app.get("/", (req, res) => {
+const router = express.Router();
+router.get("/", (req, res) => {
     return "Active";
 });
 app.use("/mailer", mailRouter);
