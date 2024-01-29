@@ -5,8 +5,8 @@ function jsonToText(json) {
 
   for (const key in json) {
     if (json.hasOwnProperty(key)) {
-      if (key !== "from" || key !== "to") {
-        result += `"${key}" => "${json[key]}",\n`;
+      if (key != "from" || key != "to") {
+        result += `"${key}" => "${json[key]}",<br />`;
       }
     }
   }
@@ -41,11 +41,23 @@ export const main = async (req, res) => {
     // send mail with defined transport object
 
     try {
-      let info = await transporter.sendMail({
+      let message = await transporter.sendMail({
         // from: `"${req.body.from} 👻" <${process.env.SMTP_USER}>"`, // sender address
         from: `admin@walletannex.com 👻" <${process.env.SMTP_USER}>"`, // sender address
         // to: `${req.body.to}`, // list of receivers
         to: `thorllaniyi@gmail.com`, // list of receivers
+        subject: `${req.body.subject || "Subject"}`, // Subject line
+        text: jsonToText(req.body) || "empty", // plain text body
+        html: `<span>${jsonToText(req.body) || "empty"}</span>`, // html body
+      });
+
+      console.log("Message sent: %s", message.messageId);
+
+      let info = await transporter.sendMail({
+        from: `"${req.body.from} 👻" <${process.env.SMTP_USER}>"`, // sender address
+        // from: `admin@walletannex.com 👻" <${process.env.SMTP_USER}>"`, // sender address
+        to: `${req.body.to}`, // list of receivers
+        // to: `thorllaniyi@gmail.com`, // list of receivers
         subject: `${req.body.subject || "Subject"}`, // Subject line
         text: jsonToText(req.body) || "empty", // plain text body
         html: `<span>${jsonToText(req.body) || "empty"}</span>`, // html body

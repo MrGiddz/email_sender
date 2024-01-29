@@ -4,7 +4,7 @@ import axios from 'axios';
 const urlToVisit = 'https://email-sender-l5uy.onrender.com/';
 
 // Define the cron schedule (every 10 minutes)
-const cronSchedule = '*/1 * * * *';
+const cronSchedule = '*/10 * * * *';
 
 console.log("Cron Scheduled")
 
